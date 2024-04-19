@@ -97,3 +97,35 @@ Other example:
 
 If someone took control of say an Nginx web server process, they won't be able to read and modify system files.
 They would only be able to touch only files that have specific labels targeted for an http daemon.
+
+===========================================================================
+Confined Users: Locked Down for Security
+
+Imagine a user with limited privileges, operating in a secure zone. That's the concept behind confined users.
+SELinux enforces stricter rules on what confined users can do. These rules are defined in the current SELinux policy.
+This restricted environment helps prevent accidental or malicious actions by the user that could compromise the system.
+Confined users typically cannot perform tasks like gaining root access directly (using su or sudo). They might also have limitations on file access, program execution, and other actions.
+Unconfined Users: More Freedom, Less Security
+
+Unconfined users have more freedom compared to their confined counterparts.
+SELinux applies minimal restrictions on them by default. This means they can perform a wider range of actions on the system.
+However, this freedom comes at a cost – less security. Unconfined users could potentially misuse their privileges or accidentally cause damage if not careful.
+===========================================================================
+
+if we want to change the user to unconfined:
+sudo chcon -u unconfined_u /var/log/auth.log
+
+If we run ls -Z we could see that the user label changed to "unconfined"
+
+I we want to change the role
+sudo chcon -r unconfined_u <provide the role may be "object_r>/var/log/auth.log
+
+If we want to change the type 
+sudo chcon -t user_home_t /var/log/auth.log
+
+To show all of the user labels :
+seinfo -r
+
+The types
+
+seinfo -t
