@@ -8,15 +8,15 @@ user_home_t = type
 s0 = level
 
 To allow or deny some action, SELinux roughly follows this logic.
-SELinux has a policy configuration which we will see in a bit (s0) where the user and their roles are defined.
+SELinux has a policy configuration which we will see in a bit, where the user and their roles are defined.
 
 The user is not the same as the username you log in with, it's an SELinux user.
-Every linux user who logy into a system is mapped to an SELinux user as part of the SELinux policy configuration.
+Every linux user who logs into a system is mapped to an SELinux user as part of the SELinux policy configuration.
 
 Map of the user is identified, a decision is made to see if it can assume the role.
 Each user can only assume a predefined set of roles.
 
-For example, we could imagine how a developer_user should only be able to enter roles like developer or docker_r that allow them to read and write application code, launch docker containers, and so on.
+For example, we could imagine how a developer_u should only be able to enter roles like developer_r or docker_r that allow them to read and write application code, launch docker containers, and so on.
 
 They should not be able to enter roles like cisadmin_r that let them change system settings.
 
